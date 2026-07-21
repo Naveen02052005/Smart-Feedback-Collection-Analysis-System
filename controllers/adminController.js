@@ -11,14 +11,14 @@ exports.postAdminLogin = (req, res) => {
     return res.render("adminLogin", { error: "Please fill all fields" });
 
 
-  const q = "SELECT * FROM admin WHERE (adminName = ? OR email = ?) AND password = ?";
-  connection.query(q, [adminName, adminName, password], (err, results) => {
-    if (err) throw err;
+  const q = "SELECT * FROM admin WHERE adminName = ? OR email = ?";  
+  connection.query(q, [adminName, adminName], async (err, results) => {
+      if (err) throw err;
 
     if (results.length === 0)
       return res.render("adminLogin", { error: "Invalid credentials" });
 
-    const admin = result[0]
+    const admin = results[0]
 
      const match = await bcrypt.compare(password, admin.password);
 
