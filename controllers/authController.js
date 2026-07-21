@@ -85,15 +85,15 @@ exports.resendOtp = async (req, res) => {
 
     try {
 
-        await transporter.sendMail({
-            from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
-            to: email,
-            subject: "Email Verification OTP",
-            text: `Your new OTP is ${otp}. It is valid for 5 minutes.`
-        });
+        // await transporter.sendMail({
+        //     from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
+        //     to: email,
+        //     subject: "Email Verification OTP",
+        //     text: `Your new OTP is ${otp}. It is valid for 5 minutes.`
+        // });
 
-
-        // Update OTP in session
+        console.log("Generated OTP:", otp);
+// await transporter.sendMail(...)
         req.session.userData.otp = otp;
         req.session.userData.otpExpiry = expiry;
 
@@ -133,7 +133,6 @@ exports.postRegister = async (req, res) => {
 
     await transporter.sendMail({
         from:`"Smart Feedback System" <${process.env.EMAIL_USER}>`,
-        // from:"no-reply@smartfeedback",
         to:email,
         subject: "Email Verification OTP",
         text: `Your OTP is ${otp}. It expires in 5 minutes.`
