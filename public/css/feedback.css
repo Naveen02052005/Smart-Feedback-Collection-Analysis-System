@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:linear-gradient(
+        135deg,
+        #eef4fc 0%,
+        #f3ecfb 80%,
+        #fdf3e4 100%
+    );
+     min-height:100vh;
+}
+
+.content{
+    margin-left:300px;
+    margin-top:100px;
+    padding:35px;
+
+}
+
+.feedback-card{
+    background:white;
+    border-radius:22px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.feedback-card h2{
+    color:#1F2937;
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#6B7280;
+    margin-bottom:35px;
+}
+
+.row{
+    display:flex;
+    gap:25px;
+    margin-bottom:30px;
+}
+
+.two-column{
+    align-items:flex-start;
+}
+
+.box{
+    flex:1;
+}
+
+.box label{
+    display:block;
+    margin-bottom:10px;
+    font-size:15px;
+    font-weight:600;
+    color:#374151;
+}
+
+.radio-group{
+    display:flex;
+    gap:30px;
+}
+
+.radio-group label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:500;
+}
+
+.radio-group input{
+    transform:scale(1.2);
+}
+
+select{
+    width:100%;
+    padding:14px;
+    border:1px solid #D1D5DB;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+}
+
+select:focus{
+    border-color:#4F46E5;
+}
+
+textarea{
+    width:100%;
+    height:190px;
+    resize:none;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #D1D5DB;
+    outline:none;
+    font-size:16px;
+}
+
+textarea:focus{
+    border-color:#4F46E5;
+}
+.rating-box{
+    max-width:320px;
+}
+.star-rating{
+    display:flex;
+    flex-direction:row-reverse;
+    justify-content:flex-end;
+}
+
+.star-rating input{
+    display:none;
+}
+
+.star-rating label{
+    font-size:42px;
+    color:#d1d5db;
+    cursor:pointer;
+    transition:.3s;
+    margin-right:5px;
+}
+
+.star-rating label:hover,
+.star-rating label:hover~label{
+    color:#FBBF24;
+}
+
+.star-rating input:checked~label{
+    color:#FBBF24;
+}
+
+.btn-area{
+    text-align:center;
+    margin-top:20px;
+}
+
+.submit-btn{
+    background:#4F46E5;
+    color:white;
+    border:none;
+    padding:15px 40px;
+    border-radius:12px;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-btn i{
+    margin-right:8px;
+}
+
+.submit-btn:hover{
+    background:#4338CA;
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(79,70,229,.35);
+}
+
+@media(max-width:900px){
+
+.sidebar{
+    width:220px;
+}
+.content{
+    margin-left:235px;
+}
+.row{
+    flex-direction:column;
+}
+
+.feedback-card{
+    padding:30px;
+}
+
+}
+
+@media(max-width:768px){
+
+.sidebar{
+    display:none;
+}
+
+.content{
+    margin-left:0;
+    margin-top:90px;
+}
+
+.navbar{
+    padding:0 20px;
+}
+
+.logo{
+    font-size:18px;
+}
+
+.logo span{
+    display:none;
+}
+
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Success</title>
+        <link rel="stylesheet" href="/css/success.css">
+    </head>
+    <body>
+        <% if(userId != null) { %>
+            <div class="feedback-container">
+            <h1>✅ Feedback Submitted Successfully!</h1>
+                <div class="feedback-details">
+                    <p>
+                        <b>Sentiment:</b>
+                        <% if(sentimentLabel == 'Positive') { %>
+                            <span style="color: green;">Positive😀</span>
+                        <% } else if(sentimentLabel == 'Negative') { %>
+                            <span style="color:red;">Negative😠</span>
+                        <% }  else { %>
+                            <span style="color:orange;">Neutral😐</span>
+                        <% } %> 
+                    </p>
+                    <p>
+                        <b>Rating:</b>
+                        <% for(let i = 1; i <= 5; i++) { %>
+                            <% if(i <= rating) { %>
+                                <span style="color: gold; font-size:34px;">★</span>
+                            <% } else { %>
+                                <span style="color: lightgray; font-size:34px;">☆</span>
+                            <% } %>
+                        <% } %>
+                        (<%= rating %>/5)
+                    </p>
+                    <p><b>Category:</b> <%= typeofCategory %></p>
+                    <p><b>Type:</b> <%= categoryName %></p>
+                </div>
+                <a href="/feedback"><button>Submit Another Feedback</button></a>
+                <a href="/history"><button>View My Feedback History</button></a>
+            </div>
+            <% } else { %>
+                <div class="feedback-container">
+            <h1>✅ Feedback Submitted Successfully!</h1>
+                <div class="feedback-details">
+                    <p>
+                        <b>Sentiment:</b>
+                        <% if(sentimentLabel == 'Positive') { %>
+                            <span style="color: green;">Positive😀</span>
+                        <% } else if(sentimentLabel == 'Negative') { %>
+                            <span style="color:red;">Negative😠</span>
+                        <% }  else { %>
+                            <span style="color:orange;">Neutral😐</span>
+                        <% } %> 
+                    </p>
+                    <p>
+                        <b>Rating:</b>
+                        <% for(let i = 1; i <= 5; i++) { %>
+                            <% if(i <= rating) { %>
+                                <span style="color: gold; font-size:34px;">★</span>
+                            <% } else { %>
+                                <span style="color: lightgray; font-size:34px;">☆</span>
+                            <% } %>
+                        <% } %>
+                        (<%= rating %>/5)
+                    </p>
+                    <p><b>Category:</b> <%= typeofCategory %></p>
+                    <p><b>Type:</b> <%= categoryName %></p>
+                </div>
+                <a href="/feedback"><button>Submit Another Feedback</button></a>
+                <a href="/logout"><button>Go Back to Home</button></a>
+            </div>
+
+                <% } %>
+
+
+            
+    </div>
+    </body>
+</html>

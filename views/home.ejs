@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        <div class="page">
+            <div class="nav">
+                <div class="icon-back">
+                    <h1><i class="fa-regular fa-comment icon"></i>Feedback</h1>
+                </div>
+                    <button class="admin-btn" onclick="location.href='/admin/login'"> Admin Login</button>
+                    <button class="user-btn" onclick="location.href='/login'">User Feedback</button>
+            </div>
+            <hr style="color: gray;">
+
+            <div class="comment">
+                <p class="heading">Every comment, turned into direction</p>
+                <p class="message">Collect feedback from any channel and let the system surface<br> the patterns, sentiment, and priorities hiding inside it.</p>
+                <button class="feed-btn" onclick="location.href='/login'">Give feedback &nbsp;<i class="fa-solid fa-up-right-from-square"></i></button>
+
+                <div class="cards">
+                    <div class="card-1">
+                        <div class="icon-1">
+                            <i class="fa-solid fa-inbox icon1"></i>
+                        </div>
+                        <h5 class="head1">Collect Feedback</h5>
+                        <p class="msg1">Easily collect customer feedback through a secure web portal using dynamic forms. Every response is stored centrally for quick access and management.</p>
+                    </div>
+                     <div class="card-2">
+                        <div class="icon-2">
+                            <i class="fa-regular fa-face-smile icon1"></i>
+                        </div>
+                        <h5 class="head2">Smart Sentiment Analsis</h5>
+                        <p class="msg2">Automatically classify feedback as Positive, Neutral, or Negative using NLP-based sentiment analysis to understand customer opinions instantly.</p>
+                    </div>
+                     <div class="card-3">
+                        <div class="icon-3">
+                            <i class="fa-solid fa-chart-simple icon1"></i>
+                        </div>
+                        <h5 class="head3">Interactive Dashboard</h5>
+                        <p class="msg3">Monitor feedback through charts, category-wise reports, satisfaction scores, and real-time analytics.</p>
+                    </div>
+                </div>
+                
+            </div>
+            <p style="text-align: center; color: #5f5f5f; font-size: 30px;">Choose how you want to continue</p>
+            <div class="cards1">
+                <div class="admin-card">
+                    <div class="shield">
+                    <i class="fa-solid fa-shield-halved shield-icon"></i>
+                    </div>
+                    <p class="admin">Admin</p>
+                    <p class="content">Manage categories and view analytics</p>
+                    <button class="admin-btn1" onclick="location.href='/admin/login'">Continue as admin</button>
+                </div>
+
+                <div class="user-card">
+                    <div class="user">
+                    <i class="fa-regular fa-user user-icon"></i>
+                    </div>
+                    <p class="user-head">User</p>
+                    <p class="content">Submit feedback and track responses</p>
+                    <button class="user-btn1" onclick="location.href='/login'">Continue as User</button>
+                </div>
+            </div>
+            <div class="guest-option">
+                    <span>Just want to leave feedback without an account?</span>
+                    <a href="/feedback">Continue as guest →</a>
+            </div>
+        </div>
+    </body>
+</html>

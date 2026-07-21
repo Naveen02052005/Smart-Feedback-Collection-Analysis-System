@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Feedback History</title>
+        
+        <style>
+            table { border-collapse:collapse; width: 80%; margin:20 auto; }
+            th,td { border:1px solid #ccc; padding:8px; text-align: center; }
+            th { background-color: #007bff; color: white ;}
+            caption { font-size: 1.5em; margin-bottom: 10px;}
+            button{ background-color: #007bff; margin-left: 50%; padding: 10px; border-radius: 10px; color:white; font-weight: bold; cursor: pointer;} 
+            .content{
+                margin-top:90px;      
+                margin-left:290px;    
+                padding:20px;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <%- include("includes/sidebar") %>
+        <div class="content">
+            <table>
+                <caption>My Feedback History</caption>
+                <tr>
+                    <th>User Name</th>
+                    <th>Category Type</th>
+                    <th>Category Name</th>
+                    <th>Message</th>
+                    <th>Rating</th>
+                    <th>Sentiment</th>
+                    <th>Submitted At</th>
+                </tr>
+                <% for(result of results) { %>
+                    <tr>
+                        <td> <%= result.userName %></td>
+                        <td> <%= result.typeofCategory %></td>
+                         <td> <%= result.categoryName %></td>
+                        <td> <%= result.message %></td>
+                        <td><% for(let i=1;i<=5;i++){ %>
+                            <% if(i <= result.rating) { %>
+                            <span style="color: gold; font-size: 20px;">★</span>
+                            <%} else { %>
+                                <span style="color: lightgray; font-size: 20px;">☆</span>
+                            <%} %>
+                        <%} %></td>
+                       <td> <%= result.sentiment %></td>
+                        <td> <%= result.timestamp.toString().split(" ").slice(0,5).join(" ") %></td>
+                    </tr>
+                    <% } %>
+            </table> 
+        </div>
+        <a href="/logout"><button>Go Back to Home</button></a>
+    </body>
+</html>

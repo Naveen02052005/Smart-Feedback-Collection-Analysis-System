@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Feedback Form</title>
+        <link rel="stylesheet" href="/css/feedback.css">
+    </head>
+    <body>
+        <%- include("includes/sidebar") %>
+         <main class="content">
+        <div class="feedback-card">
+            <h2>Submit Feedback</h2>
+            <p class="subtitle">We value your opinion. Please share your experience with us.</p>
+            <form id="feedbackForm" action="/feedback" method="POST">
+                <div class="row">
+                    <div class="box">
+                        <label>Feedback Type</label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="typeofCategory" value="Product" id="productRadio" required>Product</label>
+                            <label>
+                                <input type="radio" name="typeofCategory" value="Service" id="serviceRadio" required>Service</label>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="box productType" style="display:none;">
+                        <label> Product Category</label>
+                        <select id="productCategory" name="categoryName">
+                            <option value="" disabled selected> Select Product</option>
+                            <option value="iPhone">iPhone</option>
+                            <option value="iPad">iPad</option>
+                            <option value="Mac Book">Mac Book</option>
+                            <option value="AirPods">AirPods</option>
+                            <option value="TV">TV</option>
+                            <option value="Fridge">Fridge</option>
+                            <option value="Washing Machine">Washing Machine</option>
+                        </select>
+                    </div>
+                    <div class="box serviceType" style="display:none;">
+
+                        <label>Service CategoryService Category</label>
+                        <select id="serviceCategory" name="categoryName">
+                            <option value="" disabled selected>Select Service</option>
+                            <option value="Installation">Installation</option>                            
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Repair">Repair</option>
+                            <option value="Replacement">Replacement</option>
+                            <option value="Delivery">Delivery</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row two-column">
+                    <div class="box">
+                        <label>Your Feedback</label>
+                        <textarea name="message" placeholder="Write your feedback here..." required></textarea>
+                    </div>
+                    <div class="box rating-box">
+                        <label>Rate Your Experience</label>
+                        <div class="star-rating">
+
+                            <input type="radio" id="star5" name="rating" value="5" required>
+                            <label for="star5">★</label>
+
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4">★</label>
+
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3">★</label>
+
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2">★</label>
+
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1">★</label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="btn-area">
+                    <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i>Submit Feedback</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    </body>
+    <script src="/js/feedback.js"></script>
+</html>
