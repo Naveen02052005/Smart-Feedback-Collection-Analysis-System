@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../controllers/authController");
 
+router.get("/", (req, res) => {
+    res.redirect("/home");
+});
 router.get("/home",auth.getHome);
 router.get("/verify-otp",auth.getOTP)
 router.post("/verify-otp", auth.verifyOtp);
