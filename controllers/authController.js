@@ -129,15 +129,14 @@ exports.postRegister = async (req, res) => {
 
    
 
-    // await transporter.sendMail({
-    //     from:`"Smart Feedback System" <${process.env.EMAIL_USER}>`,
-    //     to:email,
-    //     subject: "Email Verification OTP",
-    //     text: `Your OTP is ${otp}. It expires in 5 minutes.`
-    // });
+    await transporter.sendMail({
+        from:`"Smart Feedback System" <${process.env.EMAIL_USER}>`,
+        to:email,
+        subject: "Email Verification OTP",
+        text: `Your OTP is ${otp}. It expires in 5 minutes.`
+    });
 
-    console.log("Generated OTP:", otp); 
-        // await transporter.sendMail(...) 
+
     const checkUserQuery = "SELECT * FROM UserDetails WHERE userName = ?";
     connection.query(checkUserQuery, [userName], (err, userResults) => {
       if (err) throw err;
