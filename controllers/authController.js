@@ -85,12 +85,14 @@ exports.resendOtp = async (req, res) => {
 
     try {
 
-        // await transporter.sendMail({
-        //     from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
-        //     to: email,
-        //     subject: "Email Verification OTP",
-        //     text: `Your new OTP is ${otp}. It is valid for 5 minutes.`
-        // });
+         await transporter.emails.send({
+        from: "Smart Feedback System <onboarding@resend.dev>",
+        to: email,
+        subject: "Email Verification OTP",
+        text: `Your OTP is ${otp}. It expires in 5 minutes.`
+    });
+
+    console.log("Mail sent successfully");
 
         
         req.session.userData.otp = otp; 
@@ -129,12 +131,7 @@ exports.postRegister = async (req, res) => {
 
    
 
-    await transporter.sendMail({
-        from:`"Smart Feedback System" <${process.env.EMAIL_USER}>`,
-        to:email,
-        subject: "Email Verification OTP",
-        text: `Your OTP is ${otp}. It expires in 5 minutes.`
-    });
+   
 
 
     const checkUserQuery = "SELECT * FROM UserDetails WHERE userName = ?";
@@ -158,12 +155,27 @@ exports.postRegister = async (req, res) => {
             emailError: "Email already exists. Try another one.",
           });
         }
+        try {
+
+        await transporter.emails.send({
+            from: "Smart Feedback System <onboarding@resend.dev>",
+            to: email,
+            subject: "Email Verification OTP",
+            text: `Your OTP is ${otp}. It expires in 5 minutes.`
+        });
+
+        } catch(error) {
+
+            console.log("Resend Error:", error);
+            return res.status(500).send("OTP sending failed");
+
+        }
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const id = uuidv4();
 
         req.session.userData = {
-          id: uuidv4(),
+          id,
           userName,
           email,
           password: hashedPassword,
@@ -264,14 +276,13 @@ exports.postForgotPassword = (req, res) => {
                 if (err2) throw err2;
 
                try {
-                  const info = await transporter.sendMail({
-                      from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
-                      to: email,
-                      subject: "Password Reset OTP",
-                      text: `Your OTP is ${otp}. Valid for 5 minutes.`
-                  });
+                 await transporter.emails.send({
+                from: "Smart Feedback System <onboarding@resend.dev>",
+                to: email,
+                subject: "Password Reset OTP",
+                text: `Your OTP is ${otp}. It expires in 5 minutes.`
+            });
 
-                  console.log("Mail sent:", info.response);
 
               } catch (err) {
                   console.log("Mail Error:", err);
@@ -357,18 +368,25 @@ exports.resendForgotOtp = async (req, res) => {
 
             if (err) throw err;
 
-            await transporter.sendMail({
-                from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
-                to: email,
-                subject: "Password Reset OTP",
-                text: `Your new OTP is ${otp}.`
-            });
+            try {
+    await transporter.emails.send({
+        from: "Smart Feedback System <onboarding@resend.dev>",
+        to: email,
+        subject: "Password Reset OTP",
+        text: `Your OTP is ${otp}. It expires in 5 minutes.`
+    });
 
-           res.render("otpVerify", {
+        res.render("otpVerify", {
             error: "New OTP sent successfully.",
             formAction: "/forgot-otp",
             resendAction: "/forgot-resend-otp"
         });
+
+    } catch(error) {
+        console.log(error);
+        res.status(500).send("OTP sending failed");
+    }
+
 
         });
 
