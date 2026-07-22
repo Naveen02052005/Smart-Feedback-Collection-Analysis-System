@@ -85,12 +85,14 @@ exports.resendOtp = async (req, res) => {
 
     try {
 
-         await transporter.emails.send({
-        from: "Smart Feedback System <onboarding@resend.dev>",
-        to: email,
-        subject: "Email Verification OTP",
-        text: `Your OTP is ${otp}. It expires in 5 minutes.`
-    });
+         await transporter.sendMail({
+            from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: "Email Verification OTP",
+            html: `<h2>Your OTP is ${otp}</h2>
+                    <p>This OTP is valid for 5 minutes.</p>`,
+            });
+
 
     console.log("Mail sent successfully");
 
@@ -157,12 +159,13 @@ exports.postRegister = async (req, res) => {
         }
         try {
 
-        await transporter.emails.send({
-            from: "Smart Feedback System <onboarding@resend.dev>",
+        await transporter.sendMail({
+            from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
             to: email,
             subject: "Email Verification OTP",
-            text: `Your OTP is ${otp}. It expires in 5 minutes.`
-        });
+            html: `<h2>Your OTP is ${otp}</h2>
+                    <p>This OTP is valid for 5 minutes.</p>`,
+            });
 
         } catch(error) {
 
@@ -276,12 +279,13 @@ exports.postForgotPassword = (req, res) => {
                 if (err2) throw err2;
 
                try {
-                 await transporter.emails.send({
-                from: "Smart Feedback System <onboarding@resend.dev>",
-                to: email,
-                subject: "Password Reset OTP",
-                text: `Your OTP is ${otp}. It expires in 5 minutes.`
-            });
+                await transporter.sendMail({
+                    from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
+                    to: email,
+                    subject: "Password Reset OTP",
+                    html: `<h2>Your OTP is ${otp}</h2>
+                            <p>This OTP is valid for 5 minutes.</p>`,
+                    });
 
 
               } catch (err) {
@@ -369,12 +373,13 @@ exports.resendForgotOtp = async (req, res) => {
             if (err) throw err;
 
             try {
-    await transporter.emails.send({
-        from: "Smart Feedback System <onboarding@resend.dev>",
-        to: email,
-        subject: "Password Reset OTP",
-        text: `Your OTP is ${otp}. It expires in 5 minutes.`
-    });
+                    await transporter.sendMail({
+                        from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
+                        to: email,
+                        subject: "Password Reset OTP",
+                        html: `<h2>Your OTP is ${otp}</h2>
+                                <p>This OTP is valid for 5 minutes.</p>`,
+                        });
 
         res.render("otpVerify", {
             error: "New OTP sent successfully.",
