@@ -3,20 +3,14 @@ const router = express.Router();
 const auth = require("../controllers/authController");
 const transporter = require("../config/mailer");
 
-router.get("/test-mail", async (req, res) => {
-  try {
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject: "Test",
-      text: "Hello",
-    });
-
-    res.send("Mail sent");
-  } catch (err) {
-    console.error(err);
-    res.send(err.message);
-  }
+router.get("/smtp-test", async (req, res) => {
+    try {
+        await transporter.verify();
+        res.send("SMTP working");
+    } catch (error) {
+        console.log(error);
+        res.send(error.message);
+    }
 });
 
 router.get("/", (req, res) => {
