@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../controllers/authController");
-const transporter = require("./config/mailer");
+const transporter = require("../config/mailer");
 
 router.get("/test-mail", async (req, res) => {
   try {
