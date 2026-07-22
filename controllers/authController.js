@@ -159,11 +159,12 @@ exports.postRegister = async (req, res) => {
         try {
 
         await transporter.sendMail({
-            from: "smartfeedback2@gmail.com",
-            to: userEmail,
-            subject: "OTP Verification",
-            text: `Your OTP is ${otp}`
-        });
+            from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: "Email Verification OTP",
+            html: `<h2>Your OTP is ${otp}</h2>
+                    <p>This OTP is valid for 5 minutes.</p>`,
+            });
 
         } catch(error) {
 
@@ -278,11 +279,12 @@ exports.postForgotPassword = (req, res) => {
 
                try {
                 await transporter.sendMail({
-                    from: "smartfeedback2@gmail.com",
-                    to: userEmail,
+                    from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
+                    to: email,
                     subject: "Password Reset OTP",
-                    text: `Your OTP is ${otp}`
-                });
+                    html: `<h2>Your OTP is ${otp}</h2>
+                            <p>This OTP is valid for 5 minutes.</p>`,
+                    });
 
 
               } catch (err) {
@@ -371,11 +373,12 @@ exports.resendForgotOtp = async (req, res) => {
 
             try {
                     await transporter.sendMail({
-                        from: "smartfeedback2@gmail.com",
-                        to: userEmail,
-                        subject: "Password reset OTP",
-                        text: `Your OTP is ${otp}`
-                    });
+                        from: `"Smart Feedback System" <${process.env.EMAIL_USER}>`,
+                        to: email,
+                        subject: "Password Reset OTP",
+                        html: `<h2>Your OTP is ${otp}</h2>
+                                <p>This OTP is valid for 5 minutes.</p>`,
+                        });
 
         res.render("otpVerify", {
             error: "New OTP sent successfully.",
