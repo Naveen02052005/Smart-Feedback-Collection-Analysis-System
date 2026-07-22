@@ -1,23 +1,22 @@
 const mysql = require("mysql2");
 require("dotenv").config();
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+
   ssl: {
     minVersion: "TLSv1.2",
   },
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error("Database connection failed:", err);
-  } else {
-    console.log("Connected to TiDB Cloud");
-  }
-});
+console.log("MySQL Connection Pool Created");
 
-module.exports = connection;
+module.exports = pool;
