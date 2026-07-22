@@ -3,15 +3,6 @@ const router = express.Router();
 const auth = require("../controllers/authController");
 const transporter = require("../config/mailer");
 
-router.get("/smtp-test", async (req, res) => {
-    try {
-        await transporter.verify();
-        res.send("SMTP working");
-    } catch (error) {
-        console.log(error);
-        res.send(error.message);
-    }
-});
 
 router.get("/", (req, res) => {
     res.redirect("/home");
