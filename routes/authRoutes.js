@@ -2,6 +2,22 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../controllers/authController");
 
+app.get("/test-mail", async (req, res) => {
+  try {
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      subject: "Test",
+      text: "Hello",
+    });
+
+    res.send("Mail sent");
+  } catch (err) {
+    console.error(err);
+    res.send(err.message);
+  }
+});
+
 router.get("/", (req, res) => {
     res.redirect("/home");
 });
