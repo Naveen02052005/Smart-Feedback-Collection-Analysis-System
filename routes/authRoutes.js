@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../controllers/authController");
 
-app.get("/test-mail", async (req, res) => {
+router.get("/test-mail", async (req, res) => {
   try {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
