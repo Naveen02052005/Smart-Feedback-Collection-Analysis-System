@@ -1,15 +1,30 @@
+// const nodemailer = require("nodemailer");
+
+// console.log("========== MAILER LOADED ==========");
+// console.log("EMAIL_USER:", process.env.EMAIL_USER);
+// console.log("EMAIL_PASS exists:", !!process.env.EMAIL_PASS);
+
+// const transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: process.env.EMAIL_USER,
+//     pass: process.env.EMAIL_PASS,
+//   },
+// });
+
+// module.exports = transporter;
+
 const nodemailer = require("nodemailer");
 
-console.log("========== MAILER LOADED ==========");
-console.log("EMAIL_USER:", process.env.EMAIL_USER);
-console.log("EMAIL_PASS exists:", !!process.env.EMAIL_PASS);
-
 const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    family: 4,   // Force IPv4
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
 });
 
 module.exports = transporter;
