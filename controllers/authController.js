@@ -1,8 +1,7 @@
 const connection = require("../db/connection");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
-const resend = require("../config/mailer");
-
+const sendEmail = require("../config/mailer");
 
 exports.getHome = (req,res) => {
   res.render("home");
@@ -85,15 +84,14 @@ exports.resendOtp = async (req, res) => {
 
     try {
 
-         await resend.emails.send({
-            from: `"Smart Feedback System" <${process.env.EMAIL_FROM}>`,
-            to: email,
-            subject: "Email Verification OTP",
-            html: `
+         await sendEmail(
+            email,
+            "Email Verification OTP",
+            `
                 <h2>Your OTP is ${otp}</h2>
                 <p>This OTP is valid for 5 minutes.</p>
-            `,
-        });
+            `
+        );
 
 
     console.log("Mail sent successfully");
@@ -161,15 +159,14 @@ exports.postRegister = async (req, res) => {
         }
         try {
 
-            await resend.emails.send({
-                from: `"Smart Feedback System" <${process.env.EMAIL_FROM}>`,
-                to: email,
-                subject: "Email Verification OTP",
-                html: `
+            await sendEmail(
+                email,
+                "Email Verification OTP",
+                `
                     <h2>Your OTP is ${otp}</h2>
                     <p>This OTP is valid for 5 minutes.</p>
-                `,
-            });
+                `
+            );
 
         } catch(error) {
 
@@ -283,15 +280,14 @@ exports.postForgotPassword = (req, res) => {
                 if (err2) throw err2;
 
                try {
-                await resend.emails.send({
-                    from: `"Smart Feedback System" <${process.env.EMAIL_FROM}>`,
-                    to: email,
-                    subject: "Password Reset OTP",
-                    html: `
+                await sendEmail(
+                    email,
+                    "Email Verification OTP",
+                    `
                         <h2>Your OTP is ${otp}</h2>
                         <p>This OTP is valid for 5 minutes.</p>
-                    `,
-                });
+                    `
+                );
 
 
               } catch (err) {
@@ -379,15 +375,14 @@ exports.resendForgotOtp = async (req, res) => {
             if (err) throw err;
 
             try {
-               await resend.emails.send({
-                from: `"Smart Feedback System" <${process.env.EMAIL_FROM}>`,
-                to: email,
-                subject: "Password Reset OTP",
-                html: `
-                    <h2>Your OTP is ${otp}</h2>
-                    <p>This OTP is valid for 5 minutes.</p>
-                `,
-            });
+               await sendEmail(
+                    email,
+                    "Email Verification OTP",
+                    `
+                        <h2>Your OTP is ${otp}</h2>
+                        <p>This OTP is valid for 5 minutes.</p>
+                    `
+                );
 
         res.render("otpVerify", {
             error: "New OTP sent successfully.",
