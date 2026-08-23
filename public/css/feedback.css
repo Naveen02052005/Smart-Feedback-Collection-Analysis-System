@@ -9,6 +9,8 @@
 
 body{
 
+    height: 100%;
+    overflow: hidden;
     background:linear-gradient(
         135deg,
         #eef4fc 0%,
