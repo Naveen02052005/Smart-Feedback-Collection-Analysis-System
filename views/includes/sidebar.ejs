@@ -16,19 +16,11 @@
 </head>
 
 <body>
-
-    <!-- =================== NAVBAR =================== -->
-
     <header class="navbar">
-
         <div class="logo">
-            
             <i class="fa-regular fa-comment-dots"></i>
-
             <span>Smart Feedback Collection and Analysis System</span>
-
         </div>
-
         <div class="profile">
             <div class="profile-info">
                 <span class="welcome">Welcome</span>
@@ -36,55 +28,19 @@
             </div>
             <i class="fa-solid fa-circle-user profile-icon"></i>
         </div>
-
     </header>
-
-
-
-    <!-- =================== SIDEBAR =================== -->
-
     <aside class="sidebar">
-
         <ul>
-
             <li class="<%= activePage === "feedback" ? 'active' : '' %>">
-
-                <a href="/feedback">
-
-                    <i class="fa-regular fa-pen-to-square"></i>
-
-                    Submit Feedback
-
-                </a>
-
+                <a href="/feedback"><i class="fa-regular fa-pen-to-square"></i> Submit Feedback</a>
             </li>
-
             <li class="<%= activePage === "history" ? 'active' : '' %>">
-
-                <a href="/history">
-
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-
-                    My Feedback History
-
-                </a>
-
+                <a href="/history"><i class="fa-solid fa-clock-rotate-left"></i>My Feedback History</a>
             </li>
-
             <li>
-
-                <a href="/logout">
-
-                    <i class="fa-solid fa-right-from-bracket"></i>
-
-                    Logout
-
-                </a>
-
+                <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
             </li>
-
         </ul>
-
     </aside>
     </body>
 </html>

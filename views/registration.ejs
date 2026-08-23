@@ -1,47 +1,112 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Registration Form</title>
-        <link rel="stylesheet" href="/css/style.css">
-        <script src="https://smtpjs.com/v3/smtp.js"></script>
-    </head>
-    <body>
-        <h1>Registration form</h1>
-        <form id="register" onsubmit="return validateForm()" onreset="resetErrors() " method="post" action="/register">
-        <p>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="userName">
-            <span id="name-error" class="error-message"></span>
-            <% if(nameError){ %>
-               <div class="error"> <%= nameError %></div>
-            <% } %>
-        </p>
-        <p>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
-            <span id="email-error" class="error-message"></span>
-            <% if(emailError){ %>
-               <div class="error"> <%= emailError %></div>
-            <% } %>
-        </p>
-        <p>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password">
-            <span id="password-error" class="error-message"></span>
-        </p>
-        <p>
-            <input type="submit" value="Register" name="Submit">
-            <input type="reset" value="Reset" name="Reset">
-        </p>
-        </form>
-        <script>
-                setTimeout(() => {
-                    const errorEl = document.querySelector('.error');
-                    if(errorEl) errorEl.style.display = 'none';
-                }, 5000);
-        </script>
-        <script src="/js/script.js"></script>
-        <script src="../config/mailer.js"></script>
 
-    </body>
+<head>
+    <title>Registration Form</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+
+<body>
+
+    <div class="registration-container">
+
+        <div class="registration-icon">
+            <i class="fa-solid fa-user-plus"></i>
+        </div>
+        <h1>Create Account</h1>
+        <p class="subtitle">Register to get started</p>
+        <form id="register"onsubmit="return validateForm()"onreset="resetErrors()"method="post"action="/register">
+            <p>
+                <label for="name"><i class="fa-solid fa-user"></i> Name: </label>
+                <div class="input-container">
+                    <i class="fa-solid fa-user input-icon"></i>
+                    <input type="text"id="name"name="userName"placeholder="Enter your name">
+                </div>
+                <span id="name-error"class="error-message"></span>
+
+
+                <% if(nameError){ %>
+
+                    <div class="error">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <%= nameError %>
+                    </div>
+
+                <% } %>
+
+            </p>
+            <p>
+                <label for="email"><i class="fa-solid fa-envelope"></i>Email:</label>
+
+                <div class="input-container">
+                    <i class="fa-solid fa-envelope input-icon"></i>
+                    <input type="email"id="email"name="email"placeholder="Enter your email">
+                </div>
+                <span id="email-error"class="error-message"></span>
+
+                <% if(emailError){ %>
+                    <div class="error">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <%= emailError %>
+                    </div>
+                <% } %>
+            </p>
+            <p>
+                <label for="password"><i class="fa-solid fa-lock"></i>Password:</label>
+                <div class="input-container">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password"id="password"name="password"placeholder="Create a password">
+                    <i class="fa-solid fa-eye password-toggle" id="togglePassword"></i>
+                </div>
+                <span id="password-error"class="error-message"></span>
+            </p>
+            <p>
+                <label for="confirmPassword"><i class="fa-solid fa-lock"></i>Confirm Password:</label>
+
+                <div class="input-container">
+
+                    <i class="fa-solid fa-lock input-icon"></i>
+
+                    <input type="password"id="confirmPassword"name="confirmPassword" placeholder="Confirm your password">
+                    <i class="fa-solid fa-eye password-toggle" id="toggleConfirmPassword"></i>
+                </div>
+                <span id="confirm-password-error"class="error-message"></span>
+            </p>
+            <p class="form-buttons">
+                <input type="submit" value="Register" name="Submit">
+                <input type="reset"value="Reset"name="Reset">
+            </p>
+
+        </form>
+
+    </div>
+
+
+
+    <script>
+
+        setTimeout(() => {
+
+            const errorEl = document.querySelector('.error');
+
+            if (errorEl) {
+                errorEl.style.display = 'none';
+            }
+
+        }, 5000);
+
+    </script>
+
+
+    <script src="/js/script.js"></script>
+    <script src="../config/mailer.js"></script>
+
+</body>
+
 </html>
